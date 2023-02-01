@@ -199,7 +199,7 @@ const Home = ({ subdomain = config.tld }) => {
 
     try {
       const oneTokenPriceUsd = await getTokenPrice('harmony')
-      amount = (+price.formatted * +oneTokenPriceUsd) * 100 // price in cents
+      amount = Math.round((+price.formatted * +oneTokenPriceUsd) * 100) // price in cents
       if (amount < minCentsAmount) {
         console.log(`Amount ${amount} < min amount ${minCentsAmount} cents, using ${minCentsAmount} cents value. Required by Stripe.`)
         amount = minCentsAmount
